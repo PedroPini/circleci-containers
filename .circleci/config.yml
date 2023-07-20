@@ -2,12 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.6-bullseye-node-browsers-legacy
+      - image: circleci/python:3.6
         environment:
           TEST_DATABASE_URL: postgresql://root@localhost/circle_test
       - image: circleci/postgres:9.6.5-alpine-ram
     steps:
       - checkout
+      - run: sudo apt-get update
       - run: sudo apt install  postgresql-client
       - run: whoami
       - run: |
